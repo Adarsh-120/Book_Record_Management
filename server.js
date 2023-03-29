@@ -9,7 +9,7 @@ http
   .createServer((req, res) =>{
     const {method, url} = req;
     console.log(method, url);
-    res.end();
+    
 
     if(url === "/todos"){
         if(method === "GET"){
@@ -17,14 +17,15 @@ http
             res.write(toDoList.toString());
         }
     }
+    res.end();
   })
 
-http
-.createServer((req, res) => {                         //call back function
-    res.writeHead(200, { "Content-Type": text/html});
-    res.write("<h2>Hey Server Started :-) </h2>");
-    res.end();
-})
+       //http
+       // .createServer((req, res) => {                         //call back function
+       //     res.writeHead(200, { "Content-Type": text/html});
+       //     res.write("<h2>Hey Server Started :-) </h2>");
+       //     res.end();
+       // })
 .listen(port, () => {
     console.log(`Nodejs Server Started running on Port ${port}`);
 });
