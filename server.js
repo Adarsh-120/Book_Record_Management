@@ -16,10 +16,10 @@ http
             res.writeHead(200, {"Content-Type": "text/html"});
             res.write(toDoList.toString());
         }
-        else if(method ==="POST"){
+        else if (method === "POST"){
           let body = "";
           req.on('error', (err) =>{
-              console.log(err)
+              console.log(err);
           })
              .on('data', (chunk) =>{
                  body += chunk;
@@ -30,8 +30,32 @@ http
 
               let newToDo = toDoList;
               newToDo.push(body.item);
+              //console.log(newToDo);
               // console.log("data: ", body);
+             });
+        }
+        else if (method === "DELETE"){
+          let body = "";
+          req.on("error", (err) =>{
+              console.error(err);
+          })
+             .on("data", (chunk) =>{
+                 body += chunk;
+                // console.log(chunk);
              })
+             .on("end", () =>{
+              body = JSON.parse(body);
+
+              let deleteThisItem = body.item;
+
+                 console.error(deleteThisItem);
+                  for (let i= 0; i < toDoList.length; i++){
+                    if(toDoList[i] === deleteThisItem){
+                      toDoList.splice(i, 1);
+                      break;
+                    }
+                  }                                  
+             });          
         }
         else{
           res.writeHead(501);
