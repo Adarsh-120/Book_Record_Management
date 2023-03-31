@@ -49,12 +49,20 @@ http
               let deleteThisItem = body.item;
 
                  console.error(deleteThisItem);
-                  for (let i= 0; i < toDoList.length; i++){
-                    if(toDoList[i] === deleteThisItem){
-                      toDoList.splice(i, 1);
-                      break;
-                    }
-                  }                                  
+                  // for (let i= 0; i < toDoList.length; i++){
+                  //   if(toDoList[i] === deleteThisItem){
+                  //     toDoList.splice(i, 1);
+                  //     break;
+                  //   }
+                  // }                              
+                  toDoList.find((element, index) => {
+                    if (element === deleteThisItem){
+                            toDoList.splice(index, 1);
+                   }
+                   else{
+                      console.error("Error : Match Not Found !!");
+                   }
+                  });  
              });          
         }
         else{
